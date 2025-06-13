@@ -11,30 +11,32 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+
     <style>
       ::-webkit-scrollbar {
         display: none;
       }
     </style>
-
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              purple: {
-                primary: "#6B46C1",
-                dark: "#553098",
-                light: "#8A6AD0",
-              },
-              coral: "#FF6F61",
-              teal: "#4FD1C5",
-              cream: "#FFFAF0",
+              charcoal: "#1a1a1a",
+              electricPurple: "#9d4edd",
+              neonCyan: "#00f5ff",
+              hotPink: "#ff006e",
+              softWhite: "#f8f9fa",
             },
             fontFamily: {
-              nunito: ["Nunito", "sans-serif"],
-              quicksand: ["Quicksand", "sans-serif"],
+              poppins: ["Poppins", "sans-serif"],
+              orbitron: ["Orbitron", "sans-serif"],
               sans: ["Inter", "sans-serif"],
+            },
+            boxShadow: {
+              "neon-purple": "0 0 5px #9d4edd, 0 0 10px #9d4edd",
+              "neon-cyan": "0 0 5px #00f5ff, 0 0 10px #00f5ff",
+              "neon-pink": "0 0 5px #ff006e, 0 0 10px #ff006e",
             },
           },
         },
@@ -82,495 +84,526 @@
       }
     </style>
   </head>
-  <body class="bg-cream font-quicksand text-gray-800">
-    <!-- Header -->
-    <header
-      id="header"
-      class="fixed w-full top-0 bg-white/95 shadow-sm z-50 backdrop-blur-sm"
-    >
-      <div
-        class="container mx-auto px-6 py-4 flex justify-between items-center"
-      >
-        <div class="flex items-center">
-          <span class="flex items-center cursor-pointer">
-            <div class="bg-purple-primary rounded-lg p-2 mr-2">
-              <i class="fa-solid fa-cube text-white text-xl"></i>
-            </div>
-            <span class="text-2xl font-bold text-purple-primary font-nunito"
-              >NextStop<span class="text-coral">Vending</span></span
+  <body class="bg-charcoal text-softWhite font-poppins">
+    <!-- Navbar -->
+    <header id="header" class="fixed w-full top-0 z-50 px-4 py-3">
+      <div class="max-w-7xl mx-auto">
+        <nav
+          class="bg-charcoal/80 backdrop-blur-lg rounded-full py-3 px-6 shadow-lg border border-electricPurple/30 flex items-center justify-between relative"
+        >
+          <div class="flex items-center">
+            <span class="flex items-center cursor-pointer">
+              <div
+                class="bg-gradient-to-r from-electricPurple to-neonCyan p-2 rounded-full mr-2 shadow-neon-cyan"
+              >
+                <span class="font-orbitron text-xl font-bold text-charcoal"
+                  >NS</span
+                >
+              </div>
+              <span
+                class="font-orbitron font-bold text-xl ml-1 bg-gradient-to-r from-electricPurple to-neonCyan bg-clip-text text-transparent"
+                >NextStop</span
+              >
+              <span class="font-orbitron text-softWhite ml-1">Vending Co.</span>
+            </span>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <span
+              class="hover:text-neonCyan transition-colors duration-300 cursor-pointer"
+              >About</span
             >
-          </span>
-        </div>
-        <nav class="hidden md:flex space-x-8">
-          <span
-            class="text-gray-700 hover:text-purple-primary font-medium cursor-pointer"
-            >Home</span
-          >
-          <span
-            class="text-gray-700 hover:text-purple-primary font-medium cursor-pointer"
-            >About</span
-          >
-          <span
-            class="text-gray-700 hover:text-purple-primary font-medium cursor-pointer"
-            >Services</span
-          >
-          <span
-            class="text-gray-700 hover:text-purple-primary font-medium cursor-pointer"
-            >Locations</span
-          >
-          <span
-            class="text-gray-700 hover:text-purple-primary font-medium cursor-pointer"
-            >Contact</span
-          >
+            <span
+              class="hover:text-neonCyan transition-colors duration-300 cursor-pointer"
+              >Our Journey</span
+            >
+            <span
+              class="hover:text-neonCyan transition-colors duration-300 cursor-pointer"
+              >Services</span
+            >
+            <span
+              class="hover:text-neonCyan transition-colors duration-300 cursor-pointer"
+              >Coverage</span
+            >
+            <span
+              class="bg-gradient-to-r from-electricPurple to-hotPink hover:opacity-90 transition-all duration-300 px-6 py-2 rounded-full font-medium shadow-neon-purple cursor-pointer"
+              >Contact Us</span
+            >
+          </div>
+
+          <!-- Mobile Navigation Toggle -->
+          <div class="md:hidden">
+            <button
+              id="mobileMenuBtn"
+              class="text-softWhite focus:outline-none"
+            >
+              <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+          </div>
         </nav>
-        <div class="flex items-center">
-          <span
-            class="hidden md:block bg-purple-primary hover:bg-purple-dark text-white px-6 py-2 rounded-full font-medium transition duration-300 cursor-pointer"
-          >
-            Partner With Us
-          </span>
-          <button class="md:hidden focus:outline-none">
-            <i class="fa-solid fa-bars text-purple-primary text-xl"></i>
-          </button>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobileMenu"
+          class="hidden md:hidden absolute top-20 left-0 right-0 bg-charcoal/95 backdrop-blur-lg border border-electricPurple/30 rounded-2xl shadow-neon-purple p-5 mt-2 z-50"
+        >
+          <div class="flex flex-col space-y-4">
+            <span
+              class="hover:text-neonCyan transition-colors duration-300 py-2 px-4 cursor-pointer"
+              >About</span
+            >
+            <span
+              class="hover:text-neonCyan transition-colors duration-300 py-2 px-4 cursor-pointer"
+              >Our Journey</span
+            >
+            <span
+              class="hover:text-neonCyan transition-colors duration-300 py-2 px-4 cursor-pointer"
+              >Services</span
+            >
+            <span
+              class="hover:text-neonCyan transition-colors duration-300 py-2 px-4 cursor-pointer"
+              >Coverage</span
+            >
+            <span
+              class="bg-gradient-to-r from-electricPurple to-hotPink hover:opacity-90 transition-all duration-300 px-6 py-3 rounded-full font-medium shadow-neon-purple text-center cursor-pointer"
+              >Contact Us</span
+            >
+          </div>
         </div>
       </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative pt-32 pb-24 h-[800px] overflow-hidden">
-      <div class="absolute inset-0 z-0 opacity-10">
+    <section id="hero" class="relative h-[800px] pt-32 pb-16 overflow-hidden">
+      <div class="absolute inset-0 z-0">
         <div
-          class="absolute w-64 h-64 rounded-full bg-coral top-20 left-20"
+          class="absolute bottom-0 left-0 w-full h-[70%] bg-gradient-to-t from-charcoal to-transparent"
         ></div>
         <div
-          class="absolute w-96 h-96 rounded-full bg-teal -bottom-20 -right-20"
+          class="absolute top-0 right-0 w-1/2 h-1/2 bg-hotPink/10 blur-[120px] rounded-full"
         ></div>
         <div
-          class="absolute w-48 h-48 rounded-full bg-purple-primary top-40 right-40"
+          class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-neonCyan/10 blur-[120px] rounded-full"
         ></div>
       </div>
-      <div class="container mx-auto px-6 z-10 relative">
-        <div class="flex flex-col md:flex-row items-center">
-          <div class="w-full md:w-1/2 md:pr-12 mb-12 md:mb-0">
+
+      <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="text-left">
             <h1
-              class="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-nunito"
+              class="font-orbitron text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
             >
-              Vending <span class="text-purple-primary">Reimagined</span> for
-              Modern Spaces
+              <span
+                class="bg-gradient-to-r from-electricPurple to-neonCyan bg-clip-text text-transparent"
+                >Vending Reimagined</span
+              >
+              <span>for Modern Spaces</span>
             </h1>
-            <p class="text-xl text-gray-700 mb-8 max-w-lg">
+            <p class="text-lg mb-8 text-softWhite/80 max-w-xl">
               We place and manage premium vending machines that delight
               customers and generate revenue for your business.
             </p>
-            <div
-              class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
-            >
+            <div class="flex flex-wrap gap-4">
               <span
-                class="bg-purple-primary hover:bg-purple-dark text-white px-8 py-3 rounded-full font-medium text-center transition duration-300 shadow-lg hover:shadow-xl cursor-pointer"
+                class="bg-electricPurple hover:bg-electricPurple/90 text-softWhite px-8 py-3 rounded-full font-medium shadow-neon-purple transition-all duration-300 cursor-pointer"
               >
                 Get Started
               </span>
               <span
-                class="border-2 border-purple-primary text-purple-primary hover:bg-purple-primary hover:text-white px-8 py-3 rounded-full font-medium text-center transition duration-300 cursor-pointer"
+                class="border-2 border-neonCyan text-neonCyan hover:bg-neonCyan/10 px-8 py-3 rounded-full font-medium transition-all duration-300 cursor-pointer"
               >
                 Our Services
               </span>
             </div>
-            <div class="mt-8 flex items-center">
-              <div class="flex -space-x-2">
-                <img
-                  src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg"
-                  alt="Client"
-                  class="w-10 h-10 rounded-full border-2 border-white"
-                />
-                <img
-                  src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg"
-                  alt="Client"
-                  class="w-10 h-10 rounded-full border-2 border-white"
-                />
-                <img
-                  src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg"
-                  alt="Client"
-                  class="w-10 h-10 rounded-full border-2 border-white"
-                />
-              </div>
-              <p class="ml-4 text-gray-600 text-sm">
-                Trusted by <span class="font-bold">500+</span> businesses across
-                the country
-              </p>
-            </div>
           </div>
-          <div class="w-full md:w-1/2 relative">
+          <div class="flex justify-center md:justify-end">
             <div class="relative">
               <div
-                class="bg-purple-primary rounded-2xl overflow-hidden relative z-10 shadow-xl"
-              >
-                <img
-                  class="w-full h-full object-cover"
-                  src="https://storage.googleapis.com/uxpilot-auth.appspot.com/f403ee5314-b619d584610ef259f461.png"
-                  alt="retro modern vending machine with purple and teal accents, clean design, minimalist style, product photography"
-                />
-              </div>
-              <div
-                class="absolute -top-6 -right-6 bg-coral rounded-lg p-4 shadow-lg z-20"
-              >
-                <i class="fa-solid fa-arrow-trend-up text-white text-2xl"></i>
-              </div>
-              <div
-                class="absolute -bottom-4 -left-4 bg-teal rounded-lg shadow-lg p-4 z-20"
-              >
-                <i class="fa-solid fa-thumbs-up text-white text-2xl"></i>
-              </div>
+                class="absolute -inset-4 bg-gradient-to-r from-electricPurple to-neonCyan opacity-30 blur-xl rounded-full"
+              ></div>
+              <img
+                class="w-[320px] h-[320px] object-contain relative z-10"
+                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/6ea9a8894c-ec0397a3c428b79e9716.png"
+                alt="futuristic neon synthwave style vending machine with purple and cyan glow against dark background, digital art"
+              />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Brands Section -->
-    <section id="brands" class="py-12 bg-gray-50">
-      <div class="container mx-auto px-6">
-        <p class="text-center text-gray-500 mb-8">
-          TRUSTED BY LEADING BRANDS AND VENUES
-        </p>
-        <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-          <div
-            class="w-24 h-12 flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-          >
-            <i class="fa-solid fa-building text-4xl text-gray-400"></i>
-          </div>
-          <div
-            class="w-24 h-12 flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-          >
-            <i class="fa-solid fa-hospital text-4xl text-gray-400"></i>
-          </div>
-          <div
-            class="w-24 h-12 flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-          >
-            <i class="fa-solid fa-school text-4xl text-gray-400"></i>
-          </div>
-          <div
-            class="w-24 h-12 flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-          >
-            <i class="fa-solid fa-hotel text-4xl text-gray-400"></i>
-          </div>
-          <div
-            class="w-24 h-12 flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-          >
-            <i class="fa-solid fa-shopping-bag text-4xl text-gray-400"></i>
-          </div>
-        </div>
+    <!-- About Us Section -->
+    <section id="about" class="py-20 relative">
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute top-0 right-1/4 w-1/3 h-1/3 bg-electricPurple/10 blur-[100px] rounded-full"
+        ></div>
       </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-      <div class="container mx-auto px-6">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-purple-primary font-medium">ABOUT US</span>
-          <h2 class="text-4xl font-bold mt-2 mb-6 font-nunito">
-            Vending Excellence Since 1998
+      <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="font-orbitron text-3xl md:text-4xl font-bold mb-4">
+            About Us
           </h2>
-          <p class="text-gray-600">
-            NextStop Vending Co. has been revolutionizing the vending machine
-            industry with innovative solutions that benefit both venue partners
-            and end customers.
-          </p>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-electricPurple to-neonCyan mx-auto"
+          ></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div
-            class="bg-cream rounded-xl p-8 shadow-sm hover:shadow-md transition duration-300 border border-gray-100"
-          >
-            <div
-              class="w-14 h-14 bg-purple-primary/10 rounded-full flex items-center justify-center mb-6"
-            >
-              <i class="fa-solid fa-handshake text-purple-primary text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-4 font-nunito">
-              Reliability First
-            </h3>
-            <p class="text-gray-600">
-              Our machines are monitored 24/7 and serviced regularly to ensure
-              maximum uptime and customer satisfaction.
-            </p>
-          </div>
-
-          <div
-            class="bg-cream rounded-xl p-8 shadow-sm hover:shadow-md transition duration-300 border border-gray-100"
-          >
-            <div
-              class="w-14 h-14 bg-coral/10 rounded-full flex items-center justify-center mb-6"
-            >
-              <i class="fa-solid fa-chart-line text-coral text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-4 font-nunito">
-              Revenue Generation
-            </h3>
-            <p class="text-gray-600">
-              We create passive income streams for our venue partners through
-              strategic machine placement and product selection.
-            </p>
-          </div>
-
-          <div
-            class="bg-cream rounded-xl p-8 shadow-sm hover:shadow-md transition duration-300 border border-gray-100"
-          >
-            <div
-              class="w-14 h-14 bg-teal/10 rounded-full flex items-center justify-center mb-6"
-            >
-              <i class="fa-solid fa-leaf text-teal text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-4 font-nunito">Eco-Conscious</h3>
-            <p class="text-gray-600">
-              Our energy-efficient machines and sustainable product options
-              minimize environmental impact.
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-16 bg-purple-primary/5 rounded-2xl p-8 md:p-12">
-          <div class="flex flex-col md:flex-row items-center">
-            <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0">
-              <h3 class="text-3xl font-bold mb-6 font-nunito">Our Journey</h3>
-              <p class="text-gray-700 mb-4">
-                Starting with just three machines in downtown office buildings,
-                we've grown to manage over 1,200 vending locations across 12
-                states.
-              </p>
-              <p class="text-gray-700 mb-4">
-                Our team combines decades of industry experience with modern
-                technology to deliver vending solutions that exceed
-                expectations.
-              </p>
-              <div class="flex space-x-8 mt-8">
-                <div>
-                  <p class="text-4xl font-bold text-purple-primary">1,200+</p>
-                  <p class="text-gray-600">Machines</p>
-                </div>
-                <div>
-                  <p class="text-4xl font-bold text-purple-primary">12</p>
-                  <p class="text-gray-600">States</p>
-                </div>
-                <div>
-                  <p class="text-4xl font-bold text-purple-primary">25</p>
-                  <p class="text-gray-600">Years</p>
-                </div>
-              </div>
-            </div>
-            <div class="w-full md:w-1/2">
-              <div class="relative rounded-xl overflow-hidden shadow-lg">
-                <img
-                  class="w-full h-full object-cover"
-                  src="https://storage.googleapis.com/uxpilot-auth.appspot.com/adf1e69364-1afdf875e3f3bab02de3.png"
-                  alt="retro modern office interior with vending machines, 80s aesthetic, minimalist"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-cream">
-      <div class="container mx-auto px-6">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-purple-primary font-medium">OUR SERVICES</span>
-          <h2 class="text-4xl font-bold mt-2 mb-6 font-nunito">
-            Comprehensive Vending Solutions
-          </h2>
-          <p class="text-gray-600">
-            From initial placement to ongoing maintenance, we handle every
-            aspect of your vending machine needs.
+        <div class="mb-12">
+          <p class="text-lg text-center max-w-3xl mx-auto mb-12">
+            NextStop Vending Co. brings modern vending solutions to businesses
+            across Louisiana and Texas. We combine cutting-edge technology with
+            personalized service to create passive revenue streams for our
+            partners.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Team Member 1 -->
           <div
-            id="service-placement"
-            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 group"
+            id="team-member-1"
+            class="bg-charcoal/50 border border-electricPurple/30 rounded-2xl p-6 transition-all duration-300 hover:shadow-neon-purple group"
           >
-            <div class="h-64 relative overflow-hidden">
-              <img
-                class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/73a1189f63-fd411ce4488d24a36bf5.png"
-                alt="modern vending machine being installed in office space, minimalist design"
-              />
+            <div
+              class="flex flex-col sm:flex-row items-center sm:items-start gap-6"
+            >
               <div
-                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
-              ></div>
-              <div class="absolute bottom-4 left-6">
-                <h3 class="text-white text-2xl font-bold font-nunito">
-                  Machine Placement
+                class="w-32 h-32 overflow-hidden rounded-full border-2 border-neonCyan"
+              >
+                <img
+                  src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg"
+                  alt="Team Member"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h3
+                  class="font-orbitron text-xl font-bold mb-2 group-hover:text-neonCyan transition-colors"
+                >
+                  James Reynolds
                 </h3>
+                <p class="text-softWhite/80 mb-4">Founder &amp; CEO</p>
+                <p class="mb-4">
+                  With over 15 years in the vending industry, James brings
+                  expertise in strategic placement and growth optimization.
+                </p>
+                <div class="flex gap-4">
+                  <span
+                    class="text-neonCyan hover:text-neonCyan/80 transition-colors cursor-pointer"
+                  >
+                    <i class="fa-brands fa-linkedin text-xl"></i>
+                  </span>
+                  <span
+                    class="text-neonCyan hover:text-neonCyan/80 transition-colors cursor-pointer"
+                  >
+                    <i class="fa-regular fa-envelope text-xl"></i>
+                  </span>
+                </div>
               </div>
             </div>
+          </div>
+
+          <!-- Team Member 2 -->
+          <div
+            id="team-member-2"
+            class="bg-charcoal/50 border border-electricPurple/30 rounded-2xl p-6 transition-all duration-300 hover:shadow-neon-purple group"
+          >
+            <div
+              class="flex flex-col sm:flex-row items-center sm:items-start gap-6"
+            >
+              <div
+                class="w-32 h-32 overflow-hidden rounded-full border-2 border-hotPink"
+              >
+                <img
+                  src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg"
+                  alt="Team Member"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h3
+                  class="font-orbitron text-xl font-bold mb-2 group-hover:text-hotPink transition-colors"
+                >
+                  Sarah Martinez
+                </h3>
+                <p class="text-softWhite/80 mb-4">Operations Director</p>
+                <p class="mb-4">
+                  Sarah oversees our day-to-day operations, ensuring flawless
+                  service delivery and customer satisfaction.
+                </p>
+                <div class="flex gap-4">
+                  <span
+                    class="text-hotPink hover:text-hotPink/80 transition-colors cursor-pointer"
+                  >
+                    <i class="fa-brands fa-linkedin text-xl"></i>
+                  </span>
+                  <span
+                    class="text-hotPink hover:text-hotPink/80 transition-colors cursor-pointer"
+                  >
+                    <i class="fa-regular fa-envelope text-xl"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Journey Section -->
+    <section id="journey" class="py-20 relative">
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute bottom-0 left-1/4 w-1/3 h-1/3 bg-hotPink/10 blur-[100px] rounded-full"
+        ></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="font-orbitron text-3xl md:text-4xl font-bold mb-4">
+            Our Journey
+          </h2>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-hotPink to-neonCyan mx-auto"
+          ></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <div class="grid grid-cols-2 gap-6 mb-12">
+              <!-- Stat 1 -->
+              <div
+                id="stat-1"
+                class="bg-charcoal/50 border border-electricPurple/30 rounded-2xl p-6 text-center hover:shadow-neon-purple transition-all duration-300"
+              >
+                <span
+                  class="font-orbitron text-4xl font-bold text-neonCyan block mb-2"
+                  >250+</span
+                >
+                <span class="text-softWhite/80">Machines Deployed</span>
+              </div>
+
+              <!-- Stat 2 -->
+              <div
+                id="stat-2"
+                class="bg-charcoal/50 border border-hotPink/30 rounded-2xl p-6 text-center hover:shadow-neon-pink transition-all duration-300"
+              >
+                <span
+                  class="font-orbitron text-4xl font-bold text-hotPink block mb-2"
+                  >2</span
+                >
+                <span class="text-softWhite/80">States Served</span>
+              </div>
+            </div>
+
+            <h3 class="font-orbitron text-2xl font-bold mb-4">
+              From Local to Regional
+            </h3>
+            <p class="mb-4">
+              Founded in 2018 in New Orleans, NextStop Vending Co. started with
+              just 5 machines in local businesses. Our commitment to quality
+              service and cutting-edge technology quickly set us apart from
+              traditional vending operators.
+            </p>
+            <p class="mb-4">
+              Today, we manage over 250 machines across Louisiana and Texas,
+              serving diverse locations from corporate offices to university
+              campuses. Our growth continues as we expand our territory and
+              enhance our service offerings.
+            </p>
+            <p>
+              We've built our reputation on reliability, innovation, and
+              exceptional customer service. As we grow, these values remain at
+              the core of everything we do.
+            </p>
+          </div>
+
+          <div class="flex justify-center">
+            <div class="relative">
+              <div
+                class="absolute -inset-4 bg-gradient-to-r from-hotPink to-neonCyan opacity-30 blur-xl rounded-2xl"
+              ></div>
+              <img
+                class="w-full h-[400px] object-cover rounded-2xl relative z-10"
+                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/ae57eb34c7-c6b37f58a9676a01b1ed.png"
+                alt="modern vending machines in a corporate setting with neon purple and cyan lighting, synthwave style"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section id="services" class="py-20 relative">
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute top-1/4 right-0 w-1/3 h-1/3 bg-neonCyan/10 blur-[100px] rounded-full"
+        ></div>
+        <div
+          class="absolute bottom-1/4 left-0 w-1/3 h-1/3 bg-electricPurple/10 blur-[100px] rounded-full"
+        ></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="font-orbitron text-3xl md:text-4xl font-bold mb-4">
+            Our Services
+          </h2>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-neonCyan to-electricPurple mx-auto mb-6"
+          ></div>
+          <p class="text-xl max-w-3xl mx-auto">
+            Comprehensive Vending Solutions
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Service 1 -->
+          <div
+            id="service-1"
+            class="bg-charcoal/50 border border-neonCyan/30 rounded-2xl overflow-hidden group hover:shadow-neon-cyan transition-all duration-300"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/928a726ce7-b4a2e685b3da1baf1d1f.png"
+                alt="technician analyzing space for optimal vending machine placement, neon synthwave style"
+              />
+            </div>
             <div class="p-6">
-              <p class="text-gray-600 mb-4">
+              <h3
+                class="font-orbitron text-xl font-bold mb-3 group-hover:text-neonCyan transition-colors"
+              >
+                Machine Placement
+              </h3>
+              <p class="mb-4">
                 We analyze your space and traffic patterns to determine the
                 optimal location and machine type for maximum usage and revenue.
               </p>
-              <ul class="space-y-2">
+              <ul class="space-y-2 mb-4">
                 <li class="flex items-start">
-                  <i
-                    class="fa-solid fa-check text-purple-primary mt-1 mr-2"
-                  ></i>
-                  <span>Free consultation and site assessment</span>
+                  <i class="fa-solid fa-check text-neonCyan mt-1 mr-2"></i>
+                  <span
+                    >Free consultation, site assessment, and custom machine
+                    selection based on your needs</span
+                  >
                 </li>
                 <li class="flex items-start">
-                  <i
-                    class="fa-solid fa-check text-purple-primary mt-1 mr-2"
-                  ></i>
-                  <span>Custom machine selection based on your needs</span>
-                </li>
-                <li class="flex items-start">
-                  <i
-                    class="fa-solid fa-check text-purple-primary mt-1 mr-2"
-                  ></i>
+                  <i class="fa-solid fa-check text-neonCyan mt-1 mr-2"></i>
                   <span>Professional installation with zero disruption</span>
                 </li>
               </ul>
             </div>
           </div>
 
+          <!-- Service 2 -->
           <div
-            id="service-maintenance"
-            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 group"
+            id="service-2"
+            class="bg-charcoal/50 border border-electricPurple/30 rounded-2xl overflow-hidden group hover:shadow-neon-purple transition-all duration-300"
           >
-            <div class="h-64 relative overflow-hidden">
+            <div class="h-48 overflow-hidden">
               <img
-                class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/ed4aea2161-25a567940ddc4f8fdbe2.png"
-                alt="technician maintaining modern vending machine, professional service"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/858e763ecf-adbd42080682ead27239.png"
+                alt="technician repairing vending machine with neon purple lighting, synthwave style"
               />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
-              ></div>
-              <div class="absolute bottom-4 left-6">
-                <h3 class="text-white text-2xl font-bold font-nunito">
-                  Maintenance &amp; Repairs
-                </h3>
-              </div>
             </div>
             <div class="p-6">
-              <p class="text-gray-600 mb-4">
+              <h3
+                class="font-orbitron text-xl font-bold mb-3 group-hover:text-electricPurple transition-colors"
+              >
+                Maintenance &amp; Repairs
+              </h3>
+              <p class="mb-4">
                 Our technicians ensure your machines stay in perfect working
                 condition with regular maintenance and prompt repairs when
                 needed.
               </p>
-              <ul class="space-y-2">
+              <ul class="space-y-2 mb-4">
                 <li class="flex items-start">
                   <i
-                    class="fa-solid fa-check text-purple-primary mt-1 mr-2"
+                    class="fa-solid fa-check text-electricPurple mt-1 mr-2"
                   ></i>
                   <span>Scheduled preventative maintenance</span>
                 </li>
                 <li class="flex items-start">
                   <i
-                    class="fa-solid fa-check text-purple-primary mt-1 mr-2"
+                    class="fa-solid fa-check text-electricPurple mt-1 mr-2"
                   ></i>
-                  <span>24/7 emergency repair service</span>
-                </li>
-                <li class="flex items-start">
-                  <i
-                    class="fa-solid fa-check text-purple-primary mt-1 mr-2"
-                  ></i>
-                  <span>Remote monitoring for quick issue detection</span>
+                  <span>Repair service can be sent on demand when needed</span>
                 </li>
               </ul>
             </div>
           </div>
 
+          <!-- Service 3 -->
           <div
-            id="service-restocking"
-            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 group"
+            id="service-3"
+            class="bg-charcoal/50 border border-hotPink/30 rounded-2xl overflow-hidden group hover:shadow-neon-pink transition-all duration-300"
           >
-            <div class="h-64 relative overflow-hidden">
+            <div class="h-48 overflow-hidden">
               <img
-                class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/11f10d8f5d-49dc50f0d01d1afcb6eb.png"
-                alt="person restocking modern vending machine with healthy snacks, professional service"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/1b1850b391-9d765812b32ac6e2732b.png"
+                alt="person restocking vending machine with products, neon pink lighting, synthwave style"
               />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
-              ></div>
-              <div class="absolute bottom-4 left-6">
-                <h3 class="text-white text-2xl font-bold font-nunito">
-                  Restocking &amp; Inventory
-                </h3>
-              </div>
             </div>
             <div class="p-6">
-              <p class="text-gray-600 mb-4">
+              <h3
+                class="font-orbitron text-xl font-bold mb-3 group-hover:text-hotPink transition-colors"
+              >
+                Restocking &amp; Inventory
+              </h3>
+              <p class="mb-4">
                 We handle all inventory management and regularly restock your
                 machines with fresh, high-demand products.
               </p>
-              <ul class="space-y-2">
+              <ul class="space-y-2 mb-4">
                 <li class="flex items-start">
-                  <i
-                    class="fa-solid fa-check text-purple-primary mt-1 mr-2"
-                  ></i>
+                  <i class="fa-solid fa-check text-hotPink mt-1 mr-2"></i>
                   <span>Customized product selection</span>
                 </li>
                 <li class="flex items-start">
-                  <i
-                    class="fa-solid fa-check text-purple-primary mt-1 mr-2"
-                  ></i>
+                  <i class="fa-solid fa-check text-hotPink mt-1 mr-2"></i>
                   <span>Regular restocking on optimized schedules</span>
-                </li>
-                <li class="flex items-start">
-                  <i
-                    class="fa-solid fa-check text-purple-primary mt-1 mr-2"
-                  ></i>
-                  <span>Sales data analysis to maximize revenue</span>
                 </li>
               </ul>
             </div>
           </div>
 
+          <!-- Service 4 -->
           <div
-            id="service-scouting"
-            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 group"
+            id="service-4"
+            class="bg-charcoal/50 border border-neonCyan/30 rounded-2xl overflow-hidden group hover:shadow-neon-cyan transition-all duration-300"
           >
-            <div class="h-64 relative overflow-hidden">
+            <div class="h-48 overflow-hidden">
               <img
-                class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/0ab01bded2-3303ebc360592362832f.png"
-                alt="business meeting discussing vending machine location, office setting, professional"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/f0d14d98b9-a2cc9878733e841fa17c.png"
+                alt="business analyst studying location maps for vending machine placement, neon cyan lighting, synthwave style"
               />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
-              ></div>
-              <div class="absolute bottom-4 left-6">
-                <h3 class="text-white text-2xl font-bold font-nunito">
-                  Location Scouting
-                </h3>
-              </div>
             </div>
             <div class="p-6">
-              <p class="text-gray-600 mb-4">
+              <h3
+                class="font-orbitron text-xl font-bold mb-3 group-hover:text-neonCyan transition-colors"
+              >
+                Location Scouting
+              </h3>
+              <p class="mb-4">
                 Our experts identify prime locations for vending machines that
                 will generate maximum foot traffic and revenue.
               </p>
-              <ul class="space-y-2">
+              <ul class="space-y-2 mb-4">
                 <li class="flex items-start">
-                  <i
-                    class="fa-solid fa-check text-purple-primary mt-1 mr-2"
-                  ></i>
+                  <i class="fa-solid fa-check text-neonCyan mt-1 mr-2"></i>
                   <span>Comprehensive traffic flow analysis</span>
                 </li>
                 <li class="flex items-start">
-                  <i
-                    class="fa-solid fa-check text-purple-primary mt-1 mr-2"
-                  ></i>
+                  <i class="fa-solid fa-check text-neonCyan mt-1 mr-2"></i>
                   <span>Demographic research for product matching</span>
-                </li>
-                <li class="flex items-start">
-                  <i
-                    class="fa-solid fa-check text-purple-primary mt-1 mr-2"
-                  ></i>
-                  <span>ROI projections for potential locations</span>
                 </li>
               </ul>
             </div>
@@ -579,279 +612,204 @@
       </div>
     </section>
 
-    <!-- Locations Section -->
-    <section id="locations" class="py-20 bg-white">
-      <div class="container mx-auto px-6">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-purple-primary font-medium">COVERAGE AREA</span>
-          <h2 class="text-4xl font-bold mt-2 mb-6 font-nunito">
-            Where We Operate
+    <!-- Coverage Area Section -->
+    <section id="coverage" class="py-20 relative">
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute bottom-0 right-1/4 w-1/3 h-1/3 bg-electricPurple/10 blur-[100px] rounded-full"
+        ></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="font-orbitron text-3xl md:text-4xl font-bold mb-4">
+            Coverage Area
           </h2>
-          <p class="text-gray-600">
-            NextStop Vending serves these regions with our premium vending
-            solutions.
-          </p>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-electricPurple to-hotPink mx-auto"
+          ></div>
         </div>
 
         <div
-          class="relative h-[500px] bg-gray-100 rounded-xl overflow-hidden shadow-lg mb-12"
+          class="bg-charcoal/50 border border-electricPurple/30 rounded-2xl p-6 md:p-10 mb-10"
         >
-          <img
-            class="w-full h-full object-cover"
-            src="https://storage.googleapis.com/uxpilot-auth.appspot.com/fe6e6cc87e-1857ec337725ed6b916c.png"
-            alt="stylized map of United States with highlighted regions, minimalist design, purple accent colors"
-          />
-          <div class="absolute inset-0 bg-black/10"></div>
-          <div
-            class="absolute top-6 left-6 bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-md"
-          >
-            <h3 class="text-xl font-bold mb-2 font-nunito">
-              Our Service Regions
-            </h3>
-            <ul class="grid grid-cols-2 gap-x-8 gap-y-2">
-              <li class="flex items-center">
-                <i
-                  class="fa-solid fa-location-dot text-purple-primary mr-2"
-                ></i>
-                <span>California</span>
-              </li>
-              <li class="flex items-center">
-                <i
-                  class="fa-solid fa-location-dot text-purple-primary mr-2"
-                ></i>
-                <span>Nevada</span>
-              </li>
-              <li class="flex items-center">
-                <i
-                  class="fa-solid fa-location-dot text-purple-primary mr-2"
-                ></i>
-                <span>Arizona</span>
-              </li>
-              <li class="flex items-center">
-                <i
-                  class="fa-solid fa-location-dot text-purple-primary mr-2"
-                ></i>
-                <span>Oregon</span>
-              </li>
-              <li class="flex items-center">
-                <i
-                  class="fa-solid fa-location-dot text-purple-primary mr-2"
-                ></i>
-                <span>Washington</span>
-              </li>
-              <li class="flex items-center">
-                <i
-                  class="fa-solid fa-location-dot text-purple-primary mr-2"
-                ></i>
-                <span>Colorado</span>
-              </li>
-              <li class="flex items-center">
-                <i
-                  class="fa-solid fa-location-dot text-purple-primary mr-2"
-                ></i>
-                <span>Texas</span>
-              </li>
-              <li class="flex items-center">
-                <i
-                  class="fa-solid fa-location-dot text-purple-primary mr-2"
-                ></i>
-                <span>Illinois</span>
-              </li>
-              <li class="flex items-center">
-                <i
-                  class="fa-solid fa-location-dot text-purple-primary mr-2"
-                ></i>
-                <span>New York</span>
-              </li>
-              <li class="flex items-center">
-                <i
-                  class="fa-solid fa-location-dot text-purple-primary mr-2"
-                ></i>
-                <span>Florida</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="bg-purple-primary/5 rounded-xl p-8 md:p-10">
-          <div class="flex flex-col md:flex-row items-center">
-            <div class="w-full md:w-2/3 md:pr-10">
-              <h3 class="text-2xl font-bold mb-4 font-nunito">
-                Expanding to New Territories
-              </h3>
-              <p class="text-gray-700 mb-4">
-                We're constantly growing our service area. If your location
-                isn't currently covered, contact us to discuss expansion
-                opportunities.
-              </p>
-              <span
-                class="inline-block bg-purple-primary hover:bg-purple-dark text-white px-6 py-3 rounded-full font-medium transition duration-300 mt-2 cursor-pointer"
-              >
-                Inquire About Your Area
-              </span>
-            </div>
-            <div class="w-full md:w-1/3 mt-8 md:mt-0">
+          <div class="max-w-4xl mx-auto">
+            <div class="relative">
               <div
-                class="rounded-full bg-white p-8 shadow-md w-48 h-48 mx-auto flex items-center justify-center"
-              >
-                <div class="text-center">
-                  <div class="text-5xl font-bold text-purple-primary mb-2">
-                    12+
-                  </div>
-                  <div class="text-gray-600">States and Growing</div>
-                </div>
+                class="absolute -inset-4 bg-gradient-to-r from-electricPurple to-hotPink opacity-20 blur-xl rounded-2xl"
+              ></div>
+              <img
+                class="w-full h-[400px] object-contain relative z-10"
+                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/0e0d1c1ad9-318eebbdd5759c5b93c8.png"
+                alt="stylized US map with Texas and Louisiana highlighted in neon purple and cyan colors, synthwave style, dark background"
+              />
+            </div>
+
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="flex items-center">
+                <div class="w-4 h-4 rounded-full bg-electricPurple mr-3"></div>
+                <span>Louisiana</span>
+              </div>
+              <div class="flex items-center">
+                <div class="w-4 h-4 rounded-full bg-neonCyan mr-3"></div>
+                <span>Texas</span>
               </div>
             </div>
           </div>
+        </div>
+
+        <div id="expansion-info" class="text-center max-w-3xl mx-auto">
+          <h3 class="font-orbitron text-2xl font-bold mb-4">
+            Expanding to New Territories
+          </h3>
+          <p class="text-lg">
+            We're constantly growing our service area. If your location isn't
+            currently covered, contact us to discuss expansion opportunities.
+          </p>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-cream">
-      <div class="container mx-auto px-6">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-purple-primary font-medium">GET IN TOUCH</span>
-          <h2 class="text-4xl font-bold mt-2 mb-6 font-nunito">
-            Partner With NextStop Vending
+    <section id="contact" class="py-20 relative">
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute top-0 left-1/4 w-1/3 h-1/3 bg-neonCyan/10 blur-[100px] rounded-full"
+        ></div>
+        <div
+          class="absolute bottom-0 right-1/4 w-1/3 h-1/3 bg-hotPink/10 blur-[100px] rounded-full"
+        ></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="font-orbitron text-3xl md:text-4xl font-bold mb-4">
+            Get In Touch
           </h2>
-          <p class="text-gray-600">
-            Ready to enhance your space with our premium vending solutions?
-            Contact us today.
-          </p>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-neonCyan to-hotPink mx-auto"
+          ></div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div class="flex flex-col md:flex-row">
-            <div class="w-full md:w-1/2 p-8 md:p-12">
-              <h3 class="text-2xl font-bold mb-6 font-nunito">
-                Send Us a Message
-              </h3>
-              <form>
-                <div class="mb-6">
-                  <label class="block text-gray-700 mb-2" for="name"
-                    >Your Name</label
-                  >
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+          <div class="lg:col-span-3">
+            <form
+              id="contact-form"
+              class="bg-charcoal/50 border border-electricPurple/30 rounded-2xl p-6 md:p-8"
+            >
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label for="name" class="block mb-2 font-medium">Name</label>
                   <input
                     type="text"
                     id="name"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-primary focus:border-transparent"
-                    placeholder="John Doe"
+                    class="w-full bg-charcoal/70 border border-electricPurple/30 rounded-lg p-3 focus:border-neonCyan focus:outline-none focus:ring-1 focus:ring-neonCyan transition-all duration-300"
+                    placeholder="Your name"
                   />
                 </div>
-                <div class="mb-6">
-                  <label class="block text-gray-700 mb-2" for="email"
-                    >Email Address</label
+                <div>
+                  <label for="email" class="block mb-2 font-medium"
+                    >Email</label
                   >
                   <input
                     type="email"
                     id="email"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-primary focus:border-transparent"
-                    placeholder="john@example.com"
+                    class="w-full bg-charcoal/70 border border-electricPurple/30 rounded-lg p-3 focus:border-neonCyan focus:outline-none focus:ring-1 focus:ring-neonCyan transition-all duration-300"
+                    placeholder="Your email"
                   />
                 </div>
-                <div class="mb-6">
-                  <label class="block text-gray-700 mb-2" for="location"
-                    >Location Type</label
-                  >
-                  <select
-                    id="location"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-primary focus:border-transparent"
-                  >
-                    <option>Office Building</option>
-                    <option>School/University</option>
-                    <option>Hospital/Medical Facility</option>
-                    <option>Retail Space</option>
-                    <option>Apartment Complex</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-                <div class="mb-6">
-                  <label class="block text-gray-700 mb-2" for="message"
-                    >Your Message</label
-                  >
-                  <textarea
-                    id="message"
-                    rows="4"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-primary focus:border-transparent"
-                    placeholder="Tell us about your space and needs..."
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  class="w-full bg-purple-primary hover:bg-purple-dark text-white px-6 py-3 rounded-lg font-medium transition duration-300"
+              </div>
+
+              <div class="mb-6">
+                <label for="location" class="block mb-2 font-medium"
+                  >Location Type</label
                 >
-                  Send Message
-                </button>
-              </form>
-            </div>
+                <select
+                  id="location"
+                  class="w-full bg-charcoal/70 border border-electricPurple/30 rounded-lg p-3 focus:border-neonCyan focus:outline-none focus:ring-1 focus:ring-neonCyan transition-all duration-300"
+                >
+                  <option value="">Select your location type</option>
+                  <option value="office">Office Building</option>
+                  <option value="retail">Retail Space</option>
+                  <option value="school">School/University</option>
+                  <option value="hospital">Hospital/Medical Facility</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="mb-6">
+                <label for="message" class="block mb-2 font-medium"
+                  >Message</label
+                >
+                <textarea
+                  id="message"
+                  rows="5"
+                  class="w-full bg-charcoal/70 border border-electricPurple/30 rounded-lg p-3 focus:border-neonCyan focus:outline-none focus:ring-1 focus:ring-neonCyan transition-all duration-300"
+                  placeholder="Tell us about your needs"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-gradient-to-r from-electricPurple to-hotPink hover:opacity-90 transition-all duration-300 text-softWhite font-medium py-3 px-6 rounded-lg shadow-neon-purple"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          <div class="lg:col-span-2">
             <div
-              class="w-full md:w-1/2 bg-purple-primary text-white p-8 md:p-12 flex flex-col justify-between"
+              class="bg-charcoal/50 border border-neonCyan/30 rounded-2xl p-6 md:p-8 h-full flex flex-col"
             >
-              <div>
-                <h3 class="text-2xl font-bold mb-6 font-nunito">
-                  Contact Information
-                </h3>
-                <div class="space-y-6">
-                  <div class="flex items-start">
-                    <div class="bg-white/20 rounded-full p-3 mr-4">
-                      <i class="fa-solid fa-map-marker-alt text-white"></i>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold">Main Office</h4>
-                      <p class="text-white/80">
-                        1234 Vending Way, Suite 500<br />San Francisco, CA 94107
-                      </p>
-                    </div>
+              <h3 class="font-orbitron text-2xl font-bold mb-6">
+                Contact Information
+              </h3>
+
+              <div class="space-y-6 flex-grow">
+                <div class="flex items-start">
+                  <div class="bg-neonCyan/20 p-3 rounded-lg mr-4">
+                    <i class="fa-regular fa-envelope text-neonCyan text-xl"></i>
                   </div>
-                  <div class="flex items-start">
-                    <div class="bg-white/20 rounded-full p-3 mr-4">
-                      <i class="fa-solid fa-phone text-white"></i>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold">Phone</h4>
-                      <p class="text-white/80">
-                        (800) 555-VEND<br />Mon-Fri, 8am-6pm PT
-                      </p>
-                    </div>
+                  <div>
+                    <h4 class="font-medium mb-1">Email</h4>
+                    <span class="text-neonCyan hover:underline cursor-pointer"
+                      >info@nextstopvending.com</span
+                    >
                   </div>
-                  <div class="flex items-start">
-                    <div class="bg-white/20 rounded-full p-3 mr-4">
-                      <i class="fa-solid fa-envelope text-white"></i>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold">Email</h4>
-                      <p class="text-white/80">
-                        partners@nextstopvending.com<br />support@nextstopvending.com
-                      </p>
-                    </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="bg-hotPink/20 p-3 rounded-lg mr-4">
+                    <i class="fa-solid fa-phone text-hotPink text-xl"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium mb-1">Phone</h4>
+                    <span class="text-hotPink hover:underline cursor-pointer"
+                      >(504) 555-1234</span
+                    >
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="bg-electricPurple/20 p-3 rounded-lg mr-4">
+                    <i
+                      class="fa-brands fa-instagram text-electricPurple text-xl"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium mb-1">Instagram</h4>
+                    <span
+                      class="text-electricPurple hover:underline cursor-pointer"
+                      >@nextstopvending</span
+                    >
                   </div>
                 </div>
               </div>
-              <div class="mt-12">
-                <h4 class="font-semibold mb-4">Connect With Us</h4>
-                <div class="flex space-x-4">
-                  <span
-                    class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition duration-300 cursor-pointer"
-                  >
-                    <i class="fa-brands fa-facebook-f text-white"></i>
-                  </span>
-                  <span
-                    class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition duration-300 cursor-pointer"
-                  >
-                    <i class="fa-brands fa-twitter text-white"></i>
-                  </span>
-                  <span
-                    class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition duration-300 cursor-pointer"
-                  >
-                    <i class="fa-brands fa-linkedin-in text-white"></i>
-                  </span>
-                  <span
-                    class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition duration-300 cursor-pointer"
-                  >
-                    <i class="fa-brands fa-instagram text-white"></i>
-                  </span>
-                </div>
+
+              <div class="mt-8 pt-8 border-t border-softWhite/10">
+                <p class="text-softWhite/80">Operating Hours</p>
+                <p class="font-medium">Monday - Friday: 8:00 AM - 6:00 PM</p>
               </div>
             </div>
           </div>
@@ -860,54 +818,58 @@
     </section>
 
     <!-- Footer -->
-    <footer id="footer" class="bg-gray-900 text-white py-12">
-      <div class="container mx-auto px-6">
+    <footer
+      id="footer"
+      class="bg-charcoal/80 border-t border-electricPurple/30 py-10"
+    >
+      <div class="max-w-7xl mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <div class="flex items-center mb-6">
-              <div class="bg-purple-primary rounded-lg p-2 mr-2">
-                <i class="fa-solid fa-cube text-white text-xl"></i>
-              </div>
-              <span class="text-2xl font-bold text-white font-nunito"
-                >NextStop<span class="text-coral">Vending</span></span
+          <div class="md:col-span-2">
+            <span class="flex items-center mb-4 cursor-pointer">
+              <div
+                class="bg-gradient-to-r from-electricPurple to-neonCyan p-2 rounded-full mr-2"
               >
-            </div>
-            <p class="text-gray-400 mb-6">
-              Premium vending solutions for modern spaces. Reliability,
-              convenience, and quality - all in one package.
+                <span class="font-orbitron text-xl font-bold text-charcoal"
+                  >NS</span
+                >
+              </div>
+              <span
+                class="font-orbitron font-bold text-xl ml-1 bg-gradient-to-r from-electricPurple to-neonCyan bg-clip-text text-transparent"
+                >NextStop</span
+              >
+              <span class="font-orbitron text-softWhite ml-1">Vending Co.</span>
+            </span>
+            <p class="text-softWhite/70 mb-6 max-w-md">
+              Modern vending solutions for businesses across Louisiana and
+              Texas. Creating passive revenue streams with cutting-edge
+              technology and exceptional service.
             </p>
           </div>
 
           <div>
-            <h4 class="text-lg font-bold mb-6 font-nunito">Quick Links</h4>
-            <ul class="space-y-3">
+            <h4 class="font-orbitron text-lg font-bold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
               <li>
                 <span
-                  class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
-                  >Home</span
-                >
-              </li>
-              <li>
-                <span
-                  class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+                  class="text-softWhite/70 hover:text-neonCyan transition-colors cursor-pointer"
                   >About Us</span
                 >
               </li>
               <li>
                 <span
-                  class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+                  class="text-softWhite/70 hover:text-neonCyan transition-colors cursor-pointer"
                   >Services</span
                 >
               </li>
               <li>
                 <span
-                  class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
-                  >Locations</span
+                  class="text-softWhite/70 hover:text-neonCyan transition-colors cursor-pointer"
+                  >Coverage Area</span
                 >
               </li>
               <li>
                 <span
-                  class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+                  class="text-softWhite/70 hover:text-neonCyan transition-colors cursor-pointer"
                   >Contact</span
                 >
               </li>
@@ -915,86 +877,88 @@
           </div>
 
           <div>
-            <h4 class="text-lg font-bold mb-6 font-nunito">Services</h4>
-            <ul class="space-y-3">
-              <li>
-                <span
-                  class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
-                  >Machine Placement</span
-                >
-              </li>
-              <li>
-                <span
-                  class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
-                  >Maintenance &amp; Repairs</span
-                >
-              </li>
-              <li>
-                <span
-                  class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
-                  >Restocking &amp; Inventory</span
-                >
-              </li>
-              <li>
-                <span
-                  class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
-                  >Location Scouting</span
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="text-lg font-bold mb-6 font-nunito">Newsletter</h4>
-            <p class="text-gray-400 mb-4">
-              Subscribe to our newsletter for industry updates and special
-              offers.
-            </p>
-            <div class="flex">
-              <input
-                type="email"
-                placeholder="Your email"
-                class="px-4 py-2 rounded-l-lg focus:outline-none w-full"
-              />
-              <button
-                class="bg-purple-primary hover:bg-purple-dark px-4 py-2 rounded-r-lg transition duration-300"
+            <h4 class="font-orbitron text-lg font-bold mb-4">
+              Connect With Us
+            </h4>
+            <div class="flex space-x-4 mb-6">
+              <span
+                class="bg-electricPurple/20 hover:bg-electricPurple/30 transition-colors p-3 rounded-full cursor-pointer"
               >
-                <i class="fa-solid fa-paper-plane"></i>
-              </button>
+                <i class="fa-brands fa-instagram text-electricPurple"></i>
+              </span>
+              <span
+                class="bg-neonCyan/20 hover:bg-neonCyan/30 transition-colors p-3 rounded-full cursor-pointer"
+              >
+                <i class="fa-brands fa-facebook text-neonCyan"></i>
+              </span>
+              <span
+                class="bg-hotPink/20 hover:bg-hotPink/30 transition-colors p-3 rounded-full cursor-pointer"
+              >
+                <i class="fa-brands fa-linkedin text-hotPink"></i>
+              </span>
             </div>
           </div>
         </div>
 
         <div
-          class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+          class="border-t border-softWhite/10 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
         >
-          <p class="text-gray-500 text-sm mb-4 md:mb-0">
+          <p class="text-softWhite/70 text-sm mb-4 md:mb-0">
             © 2023 NextStop Vending Co. All rights reserved.
           </p>
           <div class="flex space-x-6">
             <span
-              class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+              class="text-softWhite/70 hover:text-neonCyan text-sm transition-colors cursor-pointer"
+              >Privacy Policy</span
             >
-              <i class="fa-brands fa-facebook-f"></i>
-            </span>
             <span
-              class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+              class="text-softWhite/70 hover:text-neonCyan text-sm transition-colors cursor-pointer"
+              >Terms of Service</span
             >
-              <i class="fa-brands fa-twitter"></i>
-            </span>
-            <span
-              class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
-            >
-              <i class="fa-brands fa-linkedin-in"></i>
-            </span>
-            <span
-              class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
-            >
-              <i class="fa-brands fa-instagram"></i>
-            </span>
           </div>
         </div>
       </div>
     </footer>
+
+    <script>
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          !mobileMenuBtn.contains(e.target) &&
+          !mobileMenu.contains(e.target)
+        ) {
+          mobileMenu.classList.add("hidden");
+        }
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: "smooth",
+            });
+
+            // Close mobile menu after clicking a link
+            mobileMenu.classList.add("hidden");
+          }
+        });
+      });
+    </script>
   </body>
 </html>
