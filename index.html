@@ -11,6 +11,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <style>
       ::-webkit-scrollbar {
@@ -38,6 +39,27 @@
               "neon-cyan": "0 0 5px #00f5ff, 0 0 10px #00f5ff",
               "neon-pink": "0 0 5px #ff006e, 0 0 10px #ff006e",
             },
+            animation: {
+              "gradient-shift": "gradientShift 3s ease-in-out infinite",
+              "button-glow": "buttonGlow 2s ease-in-out infinite alternate",
+            },
+            keyframes: {
+              gradientShift: {
+                "0%": { "background-position": "0% 50%" },
+                "50%": { "background-position": "100% 50%" },
+                "100%": { "background-position": "0% 50%" },
+              },
+              buttonGlow: {
+                "0%": {
+                  "box-shadow":
+                    "0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor",
+                },
+                "100%": {
+                  "box-shadow":
+                    "0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor",
+                },
+              },
+            },
           },
         },
       };
@@ -53,7 +75,6 @@
         font-family: "Inter", sans-serif !important;
       }
 
-      /* Preserve Font Awesome icons */
       .fa,
       .fas,
       .far,
@@ -61,8 +82,7 @@
       .fab {
         font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
       }
-    </style>
-    <style>
+
       .highlighted-section {
         outline: 2px solid #3f20fb;
         background-color: rgba(63, 32, 251, 0.1);
@@ -82,57 +102,65 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
+
+      .gradient-contact-btn {
+        background: linear-gradient(-45deg, #9d4edd, #00f5ff, #ff006e, #9d4edd);
+        background-size: 400% 400%;
+        transition: all 0.3s ease;
+      }
+
+      .gradient-contact-btn:hover {
+        animation: gradient-shift 2s ease infinite;
+      }
+
+      .glow-btn:hover {
+        animation: button-glow 1.5s ease-in-out infinite alternate;
+      }
     </style>
   </head>
   <body class="bg-charcoal text-softWhite font-poppins">
-    <!-- Navbar -->
     <header id="header" class="fixed w-full top-0 z-50 px-4 py-3">
-      <div class="max-w-7xl mx-auto">
+      <div class="max-w-4xl mx-auto">
         <nav
           class="bg-charcoal/80 backdrop-blur-lg rounded-full py-3 px-6 shadow-lg border border-electricPurple/30 flex items-center justify-between relative"
         >
           <div class="flex items-center">
-            <span class="flex items-center cursor-pointer">
-              <div
-                class="bg-gradient-to-r from-electricPurple to-neonCyan p-2 rounded-full mr-2 shadow-neon-cyan"
-              >
-                <span class="font-orbitron text-xl font-bold text-charcoal"
-                  >NS</span
-                >
-              </div>
+            <a href="#hero" class="flex items-center cursor-pointer">
               <span
-                class="font-orbitron font-bold text-xl ml-1 bg-gradient-to-r from-electricPurple to-neonCyan bg-clip-text text-transparent"
-                >NextStop</span
+                class="font-orbitron font-bold text-2xl bg-gradient-to-r from-electricPurple to-neonCyan bg-clip-text text-transparent"
+                >NextVend</span
               >
-              <span class="font-orbitron text-softWhite ml-1">Vending Co.</span>
-            </span>
+            </a>
           </div>
 
-          <!-- Desktop Navigation -->
-          <div class="hidden md:flex items-center space-x-8">
-            <span
+          <div class="hidden md:flex items-center space-x-6">
+            <a
+              href="#about"
               class="hover:text-neonCyan transition-colors duration-300 cursor-pointer"
-              >About</span
+              >About</a
             >
-            <span
+            <a
+              href="#journey"
               class="hover:text-neonCyan transition-colors duration-300 cursor-pointer"
-              >Our Journey</span
+              >Our Journey</a
             >
-            <span
+            <a
+              href="#services"
               class="hover:text-neonCyan transition-colors duration-300 cursor-pointer"
-              >Services</span
+              >Services</a
             >
-            <span
+            <a
+              href="#coverage"
               class="hover:text-neonCyan transition-colors duration-300 cursor-pointer"
-              >Coverage</span
+              >Coverage</a
             >
-            <span
-              class="bg-gradient-to-r from-electricPurple to-hotPink hover:opacity-90 transition-all duration-300 px-6 py-2 rounded-full font-medium shadow-neon-purple cursor-pointer"
-              >Contact Us</span
+            <a
+              href="#contact"
+              class="bg-gradient-to-r from-electricPurple to-neonCyan bg-clip-text text-transparent hover:from-hotPink hover:to-electricPurple transition-all duration-300 cursor-pointer"
+              >Contact Us</a
             >
           </div>
 
-          <!-- Mobile Navigation Toggle -->
           <div class="md:hidden">
             <button
               id="mobileMenuBtn"
@@ -143,51 +171,42 @@
           </div>
         </nav>
 
-        <!-- Mobile Menu -->
         <div
           id="mobileMenu"
           class="hidden md:hidden absolute top-20 left-0 right-0 bg-charcoal/95 backdrop-blur-lg border border-electricPurple/30 rounded-2xl shadow-neon-purple p-5 mt-2 z-50"
         >
           <div class="flex flex-col space-y-4">
-            <span
+            <a
+              href="#about"
               class="hover:text-neonCyan transition-colors duration-300 py-2 px-4 cursor-pointer"
-              >About</span
+              >About</a
             >
-            <span
+            <a
+              href="#journey"
               class="hover:text-neonCyan transition-colors duration-300 py-2 px-4 cursor-pointer"
-              >Our Journey</span
+              >Our Journey</a
             >
-            <span
+            <a
+              href="#services"
               class="hover:text-neonCyan transition-colors duration-300 py-2 px-4 cursor-pointer"
-              >Services</span
+              >Services</a
             >
-            <span
+            <a
+              href="#coverage"
               class="hover:text-neonCyan transition-colors duration-300 py-2 px-4 cursor-pointer"
-              >Coverage</span
+              >Coverage</a
             >
-            <span
-              class="bg-gradient-to-r from-electricPurple to-hotPink hover:opacity-90 transition-all duration-300 px-6 py-3 rounded-full font-medium shadow-neon-purple text-center cursor-pointer"
-              >Contact Us</span
+            <a
+              href="#contact"
+              class="bg-gradient-to-r from-electricPurple to-neonCyan bg-clip-text text-transparent hover:from-hotPink hover:to-electricPurple transition-all duration-300 py-2 px-4 cursor-pointer"
+              >Contact Us</a
             >
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="hero" class="relative h-[800px] pt-32 pb-16 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <div
-          class="absolute bottom-0 left-0 w-full h-[70%] bg-gradient-to-t from-charcoal to-transparent"
-        ></div>
-        <div
-          class="absolute top-0 right-0 w-1/2 h-1/2 bg-hotPink/10 blur-[120px] rounded-full"
-        ></div>
-        <div
-          class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-neonCyan/10 blur-[120px] rounded-full"
-        ></div>
-      </div>
-
       <div class="max-w-7xl mx-auto px-4 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div class="text-left">
@@ -205,16 +224,17 @@
               customers and generate revenue for your business.
             </p>
             <div class="flex flex-wrap gap-4">
-              <span
-                class="bg-electricPurple hover:bg-electricPurple/90 text-softWhite px-8 py-3 rounded-full font-medium shadow-neon-purple transition-all duration-300 cursor-pointer"
+              <button
+                class="border-2 border-electricPurple text-electricPurple hover:bg-electricPurple/10 px-8 py-3 rounded-full font-medium transition-all duration-300 cursor-pointer glow-btn"
               >
                 Get Started
-              </span>
-              <span
-                class="border-2 border-neonCyan text-neonCyan hover:bg-neonCyan/10 px-8 py-3 rounded-full font-medium transition-all duration-300 cursor-pointer"
+              </button>
+              <a
+                href="#services"
+                class="border-2 border-neonCyan text-neonCyan hover:bg-neonCyan/10 px-8 py-3 rounded-full font-medium transition-all duration-300 cursor-pointer glow-btn"
               >
                 Our Services
-              </span>
+              </a>
             </div>
           </div>
           <div class="flex justify-center md:justify-end">
@@ -223,9 +243,9 @@
                 class="absolute -inset-4 bg-gradient-to-r from-electricPurple to-neonCyan opacity-30 blur-xl rounded-full"
               ></div>
               <img
-                class="w-[320px] h-[320px] object-contain relative z-10"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/6ea9a8894c-ec0397a3c428b79e9716.png"
-                alt="futuristic neon synthwave style vending machine with purple and cyan glow against dark background, digital art"
+                class="w-[380px] h-[380px] object-contain relative z-10"
+                src="images/logo.png"
+                alt="NextVend Logo"
               />
             </div>
           </div>
@@ -233,14 +253,7 @@
       </div>
     </section>
 
-    <!-- About Us Section -->
     <section id="about" class="py-20 relative">
-      <div class="absolute inset-0 z-0">
-        <div
-          class="absolute top-0 right-1/4 w-1/3 h-1/3 bg-electricPurple/10 blur-[100px] rounded-full"
-        ></div>
-      </div>
-
       <div class="max-w-7xl mx-auto px-4 relative z-10">
         <div class="text-center mb-16">
           <h2 class="font-orbitron text-3xl md:text-4xl font-bold mb-4">
@@ -253,15 +266,14 @@
 
         <div class="mb-12">
           <p class="text-lg text-center max-w-3xl mx-auto mb-12">
-            NextStop Vending Co. brings modern vending solutions to businesses
-            across Louisiana and Texas. We combine cutting-edge technology with
-            personalized service to create passive revenue streams for our
-            partners.
+            NextVend brings modern vending solutions to businesses across
+            Louisiana and Texas. We deliver innovative machines and exceptional
+            service that transform everyday spaces into profitable opportunities
+            for our partners.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Team Member 1 -->
           <div
             id="team-member-1"
             class="bg-charcoal/50 border border-electricPurple/30 rounded-2xl p-6 transition-all duration-300 hover:shadow-neon-purple group"
@@ -270,11 +282,12 @@
               class="flex flex-col sm:flex-row items-center sm:items-start gap-6"
             >
               <div
-                class="w-32 h-32 overflow-hidden rounded-full border-2 border-neonCyan"
+                class="overflow-hidden rounded-full border-2 border-neonCyan flex-shrink-0"
+                style="width: 180px; height: 180px"
               >
                 <img
-                  src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg"
-                  alt="Team Member"
+                  src="images/headshot-1.png"
+                  alt="Spencer Andres"
                   class="w-full h-full object-cover"
                 />
               </div>
@@ -282,30 +295,34 @@
                 <h3
                   class="font-orbitron text-xl font-bold mb-2 group-hover:text-neonCyan transition-colors"
                 >
-                  James Reynolds
+                  Spencer Andres
                 </h3>
-                <p class="text-softWhite/80 mb-4">Founder &amp; CEO</p>
+                <p class="text-softWhite/80 mb-4">Founder</p>
                 <p class="mb-4">
-                  With over 15 years in the vending industry, James brings
-                  expertise in strategic placement and growth optimization.
+                  An entrepreneur from a young age, Spencer has always sought
+                  bigger opportunities beyond his medical sales career. As the
+                  creative mind behind NextVend, he keeps the business flowing
+                  and constantly innovating.
                 </p>
                 <div class="flex gap-4">
-                  <span
-                    class="text-neonCyan hover:text-neonCyan/80 transition-colors cursor-pointer"
+                  <a
+                    href="https://www.linkedin.com/in/spencer-andres-797548233/"
+                    target="_blank"
+                    class="text-neonCyan hover:text-neonCyan/80 transition-all duration-300 cursor-pointer hover:drop-shadow-[0_0_8px_rgba(0,245,255,0.8)]"
                   >
                     <i class="fa-brands fa-linkedin text-xl"></i>
-                  </span>
-                  <span
-                    class="text-neonCyan hover:text-neonCyan/80 transition-colors cursor-pointer"
+                  </a>
+                  <a
+                    href="mailto:spencerandres13@yahoo.com"
+                    class="text-neonCyan hover:text-neonCyan/80 transition-all duration-300 cursor-pointer hover:drop-shadow-[0_0_8px_rgba(0,245,255,0.8)]"
                   >
                     <i class="fa-regular fa-envelope text-xl"></i>
-                  </span>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Team Member 2 -->
           <div
             id="team-member-2"
             class="bg-charcoal/50 border border-electricPurple/30 rounded-2xl p-6 transition-all duration-300 hover:shadow-neon-purple group"
@@ -314,11 +331,12 @@
               class="flex flex-col sm:flex-row items-center sm:items-start gap-6"
             >
               <div
-                class="w-32 h-32 overflow-hidden rounded-full border-2 border-hotPink"
+                class="overflow-hidden rounded-full border-2 border-hotPink flex-shrink-0"
+                style="width: 180px; height: 180px"
               >
                 <img
-                  src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg"
-                  alt="Team Member"
+                  src="images/headshot-2.png"
+                  alt="Finn Poulsen"
                   class="w-full h-full object-cover"
                 />
               </div>
@@ -326,24 +344,29 @@
                 <h3
                   class="font-orbitron text-xl font-bold mb-2 group-hover:text-hotPink transition-colors"
                 >
-                  Sarah Martinez
+                  Finn Poulsen
                 </h3>
-                <p class="text-softWhite/80 mb-4">Operations Director</p>
+                <p class="text-softWhite/80 mb-4">Founder</p>
                 <p class="mb-4">
-                  Sarah oversees our day-to-day operations, ensuring flawless
-                  service delivery and customer satisfaction.
+                  Driven by ambition beyond his account executive role, Finn
+                  does it all with a passion for customer satisfaction. His
+                  relentless drive and dedication fuel NextVend's mission to
+                  build something truly impactful.
                 </p>
                 <div class="flex gap-4">
-                  <span
-                    class="text-hotPink hover:text-hotPink/80 transition-colors cursor-pointer"
+                  <a
+                    href="https://www.linkedin.com/in/finley-poulsen-6022a428b/"
+                    target="_blank"
+                    class="text-hotPink hover:text-hotPink/80 transition-all duration-300 cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,0,110,0.8)]"
                   >
                     <i class="fa-brands fa-linkedin text-xl"></i>
-                  </span>
-                  <span
-                    class="text-hotPink hover:text-hotPink/80 transition-colors cursor-pointer"
+                  </a>
+                  <a
+                    href="mailto:poulsen.finn1@gmail.com"
+                    class="text-hotPink hover:text-hotPink/80 transition-all duration-300 cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,0,110,0.8)]"
                   >
                     <i class="fa-regular fa-envelope text-xl"></i>
-                  </span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -352,14 +375,7 @@
       </div>
     </section>
 
-    <!-- Our Journey Section -->
     <section id="journey" class="py-20 relative">
-      <div class="absolute inset-0 z-0">
-        <div
-          class="absolute bottom-0 left-1/4 w-1/3 h-1/3 bg-hotPink/10 blur-[100px] rounded-full"
-        ></div>
-      </div>
-
       <div class="max-w-7xl mx-auto px-4 relative z-10">
         <div class="text-center mb-16">
           <h2 class="font-orbitron text-3xl md:text-4xl font-bold mb-4">
@@ -373,19 +389,17 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <div class="grid grid-cols-2 gap-6 mb-12">
-              <!-- Stat 1 -->
               <div
                 id="stat-1"
                 class="bg-charcoal/50 border border-electricPurple/30 rounded-2xl p-6 text-center hover:shadow-neon-purple transition-all duration-300"
               >
                 <span
                   class="font-orbitron text-4xl font-bold text-neonCyan block mb-2"
-                  >250+</span
+                  >In-Progress</span
                 >
                 <span class="text-softWhite/80">Machines Deployed</span>
               </div>
 
-              <!-- Stat 2 -->
               <div
                 id="stat-2"
                 class="bg-charcoal/50 border border-hotPink/30 rounded-2xl p-6 text-center hover:shadow-neon-pink transition-all duration-300"
@@ -399,24 +413,26 @@
             </div>
 
             <h3 class="font-orbitron text-2xl font-bold mb-4">
-              From Local to Regional
+              From Roommates to Business Partners
             </h3>
             <p class="mb-4">
-              Founded in 2018 in New Orleans, NextStop Vending Co. started with
-              just 5 machines in local businesses. Our commitment to quality
-              service and cutting-edge technology quickly set us apart from
-              traditional vending operators.
+              Spencer and Finn, both from Mandeville, Louisiana, moved to
+              Houston to pursue their sales careers - Spencer in medical sales
+              and Finn as an account executive. But they never forgot their
+              shared dream of entrepreneurship that started back home.
             </p>
             <p class="mb-4">
-              Today, we manage over 250 machines across Louisiana and Texas,
-              serving diverse locations from corporate offices to university
-              campuses. Our growth continues as we expand our territory and
-              enhance our service offerings.
+              As roommates in Houston, they combined their sales expertise and
+              unwavering commitment to customer satisfaction to launch NextVend.
+              Their proven track record in building client relationships and
+              delivering results gives them the edge to serve businesses across
+              Louisiana and Texas.
             </p>
             <p>
-              We've built our reputation on reliability, innovation, and
-              exceptional customer service. As we grow, these values remain at
-              the core of everything we do.
+              With customer satisfaction as their top priority, Spencer and Finn
+              are leveraging their sales mastery to accommodate businesses of
+              all sizes. Their vision: expand NextVend's footprint across their
+              home state and throughout Texas, one satisfied customer at a time.
             </p>
           </div>
 
@@ -427,8 +443,8 @@
               ></div>
               <img
                 class="w-full h-[400px] object-cover rounded-2xl relative z-10"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/ae57eb34c7-c6b37f58a9676a01b1ed.png"
-                alt="modern vending machines in a corporate setting with neon purple and cyan lighting, synthwave style"
+                src="images/vendingmachine.png"
+                alt="NextVend vending machine"
               />
             </div>
           </div>
@@ -436,17 +452,7 @@
       </div>
     </section>
 
-    <!-- Our Services Section -->
     <section id="services" class="py-20 relative">
-      <div class="absolute inset-0 z-0">
-        <div
-          class="absolute top-1/4 right-0 w-1/3 h-1/3 bg-neonCyan/10 blur-[100px] rounded-full"
-        ></div>
-        <div
-          class="absolute bottom-1/4 left-0 w-1/3 h-1/3 bg-electricPurple/10 blur-[100px] rounded-full"
-        ></div>
-      </div>
-
       <div class="max-w-7xl mx-auto px-4 relative z-10">
         <div class="text-center mb-16">
           <h2 class="font-orbitron text-3xl md:text-4xl font-bold mb-4">
@@ -461,7 +467,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Service 1 -->
           <div
             id="service-1"
             class="bg-charcoal/50 border border-neonCyan/30 rounded-2xl overflow-hidden group hover:shadow-neon-cyan transition-all duration-300"
@@ -469,8 +474,8 @@
             <div class="h-48 overflow-hidden">
               <img
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/928a726ce7-b4a2e685b3da1baf1d1f.png"
-                alt="technician analyzing space for optimal vending machine placement, neon synthwave style"
+                src="images/service-placement.png"
+                alt="Professional technician analyzing optimal vending machine placement location"
               />
             </div>
             <div class="p-6">
@@ -499,7 +504,6 @@
             </div>
           </div>
 
-          <!-- Service 2 -->
           <div
             id="service-2"
             class="bg-charcoal/50 border border-electricPurple/30 rounded-2xl overflow-hidden group hover:shadow-neon-purple transition-all duration-300"
@@ -507,8 +511,8 @@
             <div class="h-48 overflow-hidden">
               <img
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/858e763ecf-adbd42080682ead27239.png"
-                alt="technician repairing vending machine with neon purple lighting, synthwave style"
+                src="images/service-maintenance.png"
+                alt="Skilled technician repairing vending machine with advanced tools"
               />
             </div>
             <div class="p-6">
@@ -539,7 +543,6 @@
             </div>
           </div>
 
-          <!-- Service 3 -->
           <div
             id="service-3"
             class="bg-charcoal/50 border border-hotPink/30 rounded-2xl overflow-hidden group hover:shadow-neon-pink transition-all duration-300"
@@ -547,8 +550,8 @@
             <div class="h-48 overflow-hidden">
               <img
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/1b1850b391-9d765812b32ac6e2732b.png"
-                alt="person restocking vending machine with products, neon pink lighting, synthwave style"
+                src="images/service-restocking.png"
+                alt="Professional person restocking vending machine with fresh products"
               />
             </div>
             <div class="p-6">
@@ -574,7 +577,6 @@
             </div>
           </div>
 
-          <!-- Service 4 -->
           <div
             id="service-4"
             class="bg-charcoal/50 border border-neonCyan/30 rounded-2xl overflow-hidden group hover:shadow-neon-cyan transition-all duration-300"
@@ -582,8 +584,8 @@
             <div class="h-48 overflow-hidden">
               <img
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/f0d14d98b9-a2cc9878733e841fa17c.png"
-                alt="business analyst studying location maps for vending machine placement, neon cyan lighting, synthwave style"
+                src="images/service-scouting.png"
+                alt="Business analyst studying location data and traffic flow analysis"
               />
             </div>
             <div class="p-6">
@@ -612,14 +614,7 @@
       </div>
     </section>
 
-    <!-- Coverage Area Section -->
     <section id="coverage" class="py-20 relative">
-      <div class="absolute inset-0 z-0">
-        <div
-          class="absolute bottom-0 right-1/4 w-1/3 h-1/3 bg-electricPurple/10 blur-[100px] rounded-full"
-        ></div>
-      </div>
-
       <div class="max-w-7xl mx-auto px-4 relative z-10">
         <div class="text-center mb-16">
           <h2 class="font-orbitron text-3xl md:text-4xl font-bold mb-4">
@@ -631,56 +626,33 @@
         </div>
 
         <div
-          class="bg-charcoal/50 border border-electricPurple/30 rounded-2xl p-6 md:p-10 mb-10"
+          class="bg-charcoal/50 border border-electricPurple/30 rounded-2xl p-8 hover:shadow-neon-purple transition-all duration-300"
         >
-          <div class="max-w-4xl mx-auto">
-            <div class="relative">
-              <div
-                class="absolute -inset-4 bg-gradient-to-r from-electricPurple to-hotPink opacity-20 blur-xl rounded-2xl"
-              ></div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div class="flex justify-center lg:justify-start">
               <img
-                class="w-full h-[400px] object-contain relative z-10"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/0e0d1c1ad9-318eebbdd5759c5b93c8.png"
-                alt="stylized US map with Texas and Louisiana highlighted in neon purple and cyan colors, synthwave style, dark background"
+                class="w-full max-w-md h-auto object-contain"
+                src="images/us-map-coverage.png"
+                alt="United States map with Louisiana and Texas highlighted in neon colors"
               />
             </div>
 
-            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="flex items-center">
-                <div class="w-4 h-4 rounded-full bg-electricPurple mr-3"></div>
-                <span>Louisiana</span>
-              </div>
-              <div class="flex items-center">
-                <div class="w-4 h-4 rounded-full bg-neonCyan mr-3"></div>
-                <span>Texas</span>
-              </div>
+            <div class="text-center lg:text-left">
+              <h3 class="font-orbitron text-3xl font-bold mb-6">
+                Expanding to New Territories
+              </h3>
+              <p class="text-lg text-softWhite/90 leading-relaxed">
+                We're constantly growing our service area. If your location
+                isn't currently covered, contact us to discuss expansion
+                opportunities.
+              </p>
             </div>
           </div>
-        </div>
-
-        <div id="expansion-info" class="text-center max-w-3xl mx-auto">
-          <h3 class="font-orbitron text-2xl font-bold mb-4">
-            Expanding to New Territories
-          </h3>
-          <p class="text-lg">
-            We're constantly growing our service area. If your location isn't
-            currently covered, contact us to discuss expansion opportunities.
-          </p>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="py-20 relative">
-      <div class="absolute inset-0 z-0">
-        <div
-          class="absolute top-0 left-1/4 w-1/3 h-1/3 bg-neonCyan/10 blur-[100px] rounded-full"
-        ></div>
-        <div
-          class="absolute bottom-0 right-1/4 w-1/3 h-1/3 bg-hotPink/10 blur-[100px] rounded-full"
-        ></div>
-      </div>
-
       <div class="max-w-7xl mx-auto px-4 relative z-10">
         <div class="text-center mb-16">
           <h2 class="font-orbitron text-3xl md:text-4xl font-bold mb-4">
@@ -751,7 +723,7 @@
 
               <button
                 type="submit"
-                class="w-full bg-gradient-to-r from-electricPurple to-hotPink hover:opacity-90 transition-all duration-300 text-softWhite font-medium py-3 px-6 rounded-lg shadow-neon-purple"
+                class="w-full border-2 border-electricPurple text-electricPurple hover:bg-electricPurple/10 transition-all duration-300 font-medium py-3 px-6 rounded-lg glow-btn"
               >
                 Send Message
               </button>
@@ -774,7 +746,7 @@
                   <div>
                     <h4 class="font-medium mb-1">Email</h4>
                     <span class="text-neonCyan hover:underline cursor-pointer"
-                      >info@nextstopvending.com</span
+                      >nextvend.business@gmail.com</span
                     >
                   </div>
                 </div>
@@ -786,7 +758,7 @@
                   <div>
                     <h4 class="font-medium mb-1">Phone</h4>
                     <span class="text-hotPink hover:underline cursor-pointer"
-                      >(504) 555-1234</span
+                      >(985) 273-8080</span
                     >
                   </div>
                 </div>
@@ -801,7 +773,7 @@
                     <h4 class="font-medium mb-1">Instagram</h4>
                     <span
                       class="text-electricPurple hover:underline cursor-pointer"
-                      >@nextstopvending</span
+                      >Coming Soon</span
                     >
                   </div>
                 </div>
@@ -817,148 +789,19 @@
       </div>
     </section>
 
-    <!-- Footer -->
     <footer
       id="footer"
       class="bg-charcoal/80 border-t border-electricPurple/30 py-10"
     >
       <div class="max-w-7xl mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div class="md:col-span-2">
-            <span class="flex items-center mb-4 cursor-pointer">
-              <div
-                class="bg-gradient-to-r from-electricPurple to-neonCyan p-2 rounded-full mr-2"
-              >
-                <span class="font-orbitron text-xl font-bold text-charcoal"
-                  >NS</span
-                >
-              </div>
-              <span
-                class="font-orbitron font-bold text-xl ml-1 bg-gradient-to-r from-electricPurple to-neonCyan bg-clip-text text-transparent"
-                >NextStop</span
-              >
-              <span class="font-orbitron text-softWhite ml-1">Vending Co.</span>
-            </span>
-            <p class="text-softWhite/70 mb-6 max-w-md">
-              Modern vending solutions for businesses across Louisiana and
-              Texas. Creating passive revenue streams with cutting-edge
-              technology and exceptional service.
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-orbitron text-lg font-bold mb-4">Quick Links</h4>
-            <ul class="space-y-2">
-              <li>
-                <span
-                  class="text-softWhite/70 hover:text-neonCyan transition-colors cursor-pointer"
-                  >About Us</span
-                >
-              </li>
-              <li>
-                <span
-                  class="text-softWhite/70 hover:text-neonCyan transition-colors cursor-pointer"
-                  >Services</span
-                >
-              </li>
-              <li>
-                <span
-                  class="text-softWhite/70 hover:text-neonCyan transition-colors cursor-pointer"
-                  >Coverage Area</span
-                >
-              </li>
-              <li>
-                <span
-                  class="text-softWhite/70 hover:text-neonCyan transition-colors cursor-pointer"
-                  >Contact</span
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="font-orbitron text-lg font-bold mb-4">
-              Connect With Us
-            </h4>
-            <div class="flex space-x-4 mb-6">
-              <span
-                class="bg-electricPurple/20 hover:bg-electricPurple/30 transition-colors p-3 rounded-full cursor-pointer"
-              >
-                <i class="fa-brands fa-instagram text-electricPurple"></i>
-              </span>
-              <span
-                class="bg-neonCyan/20 hover:bg-neonCyan/30 transition-colors p-3 rounded-full cursor-pointer"
-              >
-                <i class="fa-brands fa-facebook text-neonCyan"></i>
-              </span>
-              <span
-                class="bg-hotPink/20 hover:bg-hotPink/30 transition-colors p-3 rounded-full cursor-pointer"
-              >
-                <i class="fa-brands fa-linkedin text-hotPink"></i>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="border-t border-softWhite/10 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
-        >
-          <p class="text-softWhite/70 text-sm mb-4 md:mb-0">
-            © 2023 NextStop Vending Co. All rights reserved.
+        <div class="text-center">
+          <p class="text-softWhite/70 text-sm">
+            © 2025 NextVend. All rights reserved.
           </p>
-          <div class="flex space-x-6">
-            <span
-              class="text-softWhite/70 hover:text-neonCyan text-sm transition-colors cursor-pointer"
-              >Privacy Policy</span
-            >
-            <span
-              class="text-softWhite/70 hover:text-neonCyan text-sm transition-colors cursor-pointer"
-              >Terms of Service</span
-            >
-          </div>
         </div>
       </div>
     </footer>
 
-    <script>
-      // Mobile menu toggle
-      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-      const mobileMenu = document.getElementById("mobileMenu");
-
-      mobileMenuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-      });
-
-      // Close mobile menu when clicking outside
-      document.addEventListener("click", (e) => {
-        if (
-          !mobileMenuBtn.contains(e.target) &&
-          !mobileMenu.contains(e.target)
-        ) {
-          mobileMenu.classList.add("hidden");
-        }
-      });
-
-      // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-
-          const targetId = this.getAttribute("href");
-          if (targetId === "#") return;
-
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop - 80,
-              behavior: "smooth",
-            });
-
-            // Close mobile menu after clicking a link
-            mobileMenu.classList.add("hidden");
-          }
-        });
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
